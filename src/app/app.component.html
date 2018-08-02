@@ -1,0 +1,33 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" [ngClass]="{active: url == '/home'}" [routerLink]="['/home']">Home</a>
+  </div>
+  <a class="navbar-text" [routerLink]="['/home']">
+    Ice and Fire Universe &amp;
+    <span class="got">#</span>
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="mt-5">
+  <div class="container pt-3">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="row">
+          <span class="col-12">Made using An API of Ice and Fire</span>
+          <a class="col-12" href="https://www.anapioficeandfire.com" target="blank">www.anapioficeandfire.com</a>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row text-right">
+          <span class="col-12">Contact</span>
+          <span class="col-12">nitinshokeen9@gmail.com</span>
+        </div>
+      </div>
+      <div class="col-auto">
+        <span>&copy;2018 Nitin Shokeen</span>
+      </div>
+    </div>
+  </div>
+</footer>

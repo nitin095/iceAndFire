@@ -1,0 +1,25 @@
+h1{
+    font-family: Game of Thrones;
+    background-image: url(/assets/images/text-bg.jpg);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+    word-spacing: 15px
+}
+p{
+    color: silver
+}
+.button{
+    padding: 2rem;
+    color: silver;
+    background-color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out
+}
+.button:hover{
+    color: #F7B263;
+    background-color: rgba(247, 178, 99, 0.3);
+}

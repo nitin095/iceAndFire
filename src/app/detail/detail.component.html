@@ -1,0 +1,391 @@
+<div class="loader" [hidden]="item"></div>
+<div class="back-btn" (click)="goback()">back</div>
+<div class="container mt-5" *ngIf="item">
+  <div class="card black-tint" style="width: 60vw;margin: auto">
+    <div class="row align-items-center text-center">
+      <div class="col-auto" id="item-img">
+        <img class="img-fluid" src="../assets/images/{{category}}/{{item.name}}.jpg" (error)="hideImage('item-img')">
+      </div>
+      <div class="col py-5">
+        <div class="row">
+          <div class="col-12 item-name">
+            <span [hidden]="!item.name">{{item.name | uppercase}}</span>
+            <span *ngIf="!item.name">{{item.aliases[0] | uppercase}}</span>
+            <hr>
+          </div>
+          <div class="col-12 item-data">
+            <div class="row" *ngIf="item.mediaType">
+              <div class="col-6 text-right text-muted">Media type:</div>{{item.mediaType}}</div>
+            <div class="row" *ngIf="item.publisher">
+              <div class="col-6 text-right text-muted">Publisher:</div>{{item.publisher}}</div>
+            <div class="row" *ngIf="item.numberOfPages">
+              <div class="col-6 text-right text-muted">Number of pages:</div>{{item.numberOfPages}}</div>
+            <div class="row" *ngIf="item.isbn">
+              <div class="col-6 text-right text-muted">ISBN:</div>{{item.isbn}}</div>
+            <div class="row" *ngIf="item.country">
+              <div class="col-6 text-right text-muted">Country:</div>{{item.country}}</div>
+            <div class="row" *ngIf="item.released">
+              <div class="col-6 text-right text-muted">Released:</div>{{item.released | date: 'longDate' }}</div>
+            <div class="row" *ngIf="item.culture">
+              <div class="col-6 text-right text-muted">Culture:</div>{{item.culture}}</div>
+            <div class="row" *ngIf="item.gender">
+              <div class="col-6 text-right text-muted">Gender:</div>{{item.gender}}</div>
+            <div class="row" *ngIf="item.born">
+              <div class="col-6 text-right text-muted">Born:</div>{{item.born}}</div>
+            <div class="row" *ngIf="item.died">
+              <div class="col-6 text-right text-muted">Died:</div><div class="col p-0 text-left">{{item.died}}</div></div>
+            <div class="row link" *ngIf="item.father" [routerLink]="['/detail','characters',characterDetails.father.id]">
+              <div class="col-6 text-right text-muted">Father:</div>{{characterDetails.father.name}}</div>
+            <div class="row link" *ngIf="item.mother" [routerLink]="['/detail','characters',characterDetails.mother.id]">
+              <div class="col-6 text-right text-muted">Mother:</div>{{characterDetails.mother.name}}</div>
+            <div class="row link" *ngIf="item.spouse" [routerLink]="['/detail','characters',characterDetails.spouse.id]">
+              <div class="col-6 text-right text-muted">Spouse:</div>{{characterDetails.spouse.name}}</div>
+            <div class="row" *ngIf="item.region">
+              <div class="col-6 text-right text-muted">Region:</div>{{item.region}}</div>
+            <div class="row" *ngIf="item.words">
+              <div class="col-6 text-right text-muted">Words:</div>{{item.words}}</div>
+            <div class="row" *ngIf="item.founded">
+              <div class="col-6 text-right text-muted">Founded:</div>{{item.founded}}</div>
+            <div class="row" *ngIf="item.diedOut">
+              <div class="col-6 text-right text-muted">Died Out:</div>{{item.diedOut}}</div>
+          </div>
+          <!-- end item-data -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end card -->
+
+  <div class="mt-3 mx-auto" *ngIf="category == 'books'" style="width: 70vw">
+    <div class="card-deck">
+      <div class="card text-center" *ngFor="let author of item.authors">
+        <div class="card-body">
+          <h4 class="card-title">Author</h4>
+          <img class="img-fluid" src="../assets/images/authors/{{author}}.jpg" style="height: 15vh">
+          <div class="card-text">{{author}}</div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="row align-items-center" style="height: 90%">
+          <div class="card-body p-0">
+            <div class="display-3 text-muted text-shadow">{{item.characters.length}} </div>
+            <div class="card-text">Characters</div>
+          </div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="row align-items-center" style="height: 90%">
+          <div class="card-body">
+            <div class="display-3 text-muted text-shadow">{{item.povCharacters.length}} </div>
+            <div class="card-text">POV Characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card-deck -->
+    <!-- characters in books -->
+    <h3 class="top-margin text-center">Characters</h3>
+    <p class="text-center">All characters that has been in this book</p>
+    <div class="row justify-content-end">
+      <div class="col-3 mt-1 mb-3">
+        <div class="row reduced-line-height">
+          <small class="col-12 p-0">Search by name</small>
+          <input class="search-input" type="text" [(ngModel)]="searchInput" placeholder="character">
+        </div>
+      </div>
+    </div>
+    <div class="item-loader" [hidden]="bookDetails.characters[0]"></div>
+    <div class="card-columns">
+      <div *ngFor="let character of bookDetails.characters | search: searchInput; let i=index">
+        <div class="card link" *ngIf="i<bookDetails.displayCharactersNumber" style="width: 20vw" [routerLink]="['/detail','characters',character.id]">
+          <div class="row align-items-center">
+            <div class="col-auto py-0">
+              <img id="{{character.id}}" class="img-fluid" src="../assets/images/characters/{{character.name}}.jpg" style="height: 15vh"
+                (error)="hideImage(character.id)">
+            </div>
+            <div class="col py-3">
+              <span>{{character.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center my-2">
+      <div class="col-12 text-center">
+        <span class="text-muted">Showing {{bookDetails.displayCharactersNumber}} of {{bookDetails.characters.length}} characters</span>
+      </div>
+      <div class="col-auto mt-1">
+        <button type="button" class="btn btn-outline-dark btn-sm load-button" (click)="displayMoreCharacters(25)">Load more</button>
+      </div>
+    </div>
+    <!-- end characters in books -->
+    <!-- pov-characters in books -->
+    <div class="top-margin" *ngIf="item.povCharacters[0]">
+      <h3 class="text-center">POV-Chapter Characters</h3>
+      <p class="text-center">All character that has had a point of view (POV) chapter in this book.</p>
+      <div class="item-loader" [hidden]="bookDetails.povCharacters[0]"></div>
+      <div class="card-columns">
+        <div *ngFor="let character of bookDetails.povCharacters; let i=index">
+          <div class="card link" *ngIf="i<bookDetails.displayPovCharactersNumber" [routerLink]="['/detail','characters',character.id]"
+            style="width: 20vw">
+            <div class="row align-items-center">
+              <div class="col-auto py-0">
+                <img id="pov-{{character.id}}" class="img-fluid" src="../assets/images/characters/{{character.name}}.jpg" style="height: 15vh"
+                  (error)="hideImage('pov-'+character.id)">
+              </div>
+              <div class="col py-3">
+                <span>{{character.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center my-2" *ngIf="bookDetails.povCharacters.length>25">
+        <div class="col-12 text-center">
+          <span class="text-muted">Showing {{bookDetails.displayPovCharactersNumber}} of {{bookDetails.povCharacters.length}} characters</span>
+        </div>
+        <div class="col-auto mt-1">
+          <button type="button" class="btn btn-outline-dark btn-sm load-button" (click)="displayMorePovCharacters(25)">Load more</button>
+        </div>
+      </div>
+    </div>
+    <!-- end pov-characters in books -->
+
+  </div>
+  <!-- end books category -->
+
+  <div class="card-columns mt-5" *ngIf="category == 'characters'">
+
+    <div class="card" *ngIf="item.books[0]">
+      <div class="card-body">
+        <h5 class="card-title">Books</h5>
+        <p class="card-text">
+          <small>Books that {{item.name}}
+            <span *ngIf="!item.name">{{item.aliases[0]}}</span> has been in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let book of characterDetails.books; index as i" [attr.data-index]="i">
+          <li class="list-group-item li-hover" [routerLink]="['/detail','books',book.id]">
+            <div class="row align-items-center">
+              <div class="col">
+                <img class="img-fluid" src="../assets/images/books/{{book.name}}.jpg" style="height: 15vh">
+              </div>
+              <div class="col">
+                {{book.name}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.titles[0]">
+      <div class="card-body">
+        <h5 class="card-title">Titles</h5>
+        <p class="card-text">
+          <small>The titles that {{item.name}} holds.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let title of item.titles">
+          <li class="list-group-item">{{title}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.aliases[0]">
+      <div class="card-body">
+        <h5 class="card-title">Aliases</h5>
+        <ul class="list-group list-group-flush" *ngFor="let alias of item.aliases">
+          <li class="list-group-item">{{alias}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.tvSeries[0]">
+      <div class="card-body">
+        <h5 class="card-title">TV Series</h5>
+        <p class="card-text">
+          <small>The seasons of Game of Thrones that {{item.name}} has been in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let series of item.tvSeries">
+          <li class="list-group-item">{{series}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.allegiances[0]">
+      <div class="card-body">
+        <h5 class="card-title">Allegiances</h5>
+        <p class="card-text">
+          <small>Houses that {{item.name}}
+            <span *ngIf="!item.name">{{item.aliases[0]}}</span> is loyal to.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let house of characterDetails.allegiances; index as i" [attr.data-index]="i">
+          <li class="list-group-item li-hover text-center" [routerLink]="['/detail','houses',house.id]">
+            <img id="{{house.id}}" class="img-fluid mx-auto house-img" src="../assets/images/houses/{{house.name}}.jpg" style="width: 5vw"
+              (error)="hideImage(house.id)">
+            <br>{{house.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card text-center" *ngIf="item.playedBy[0]">
+      <div class="card-body">
+        <h5 class="card-title">Played by</h5>
+        <img class="img-fluid" src="../assets/images/actors/{{item.playedBy}}.jpg" style="height: 20vh">
+        <br> {{item.playedBy}}
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.povBooks[0]">
+      <div class="card-body">
+        <h5 class="card-title">POV Books</h5>
+        <p class="card-text">
+          <small>Books that {{item.name}} has had a POV-chapter in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let book of characterDetails.povBooks">
+          <li class="list-group-item li-hover" [routerLink]="['/detail','books',book.id]">
+            <div class="row align-items-center">
+              <div class="col">
+                <img class="img-fluid" src="../assets/images/books/{{book.name}}.jpg" style="height: 15vh">
+              </div>
+              <div class="col">{{book.name}}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- end characters category -->
+
+  <div class="mt-5" *ngIf="category == 'houses'">
+    <div class="card-deck">
+      <div class="card orange-hover text-center" *ngIf="item.currentLord" [routerLink]="['/detail','characters',houseDetails.currentLord.id]">
+        <div class="card-body">
+          <h5 class="card-title">Current lord</h5>
+          <img id="{{item.currentLord}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.currentLord.name}}.jpg"
+            (error)="hideImage(item.currentLord)" style="height: 10vh">
+          <br> {{houseDetails.currentLord.name}}
+        </div>
+      </div>
+
+      <div class="card orange-hover text-center" *ngIf="item.heir" [routerLink]="['/detail','characters',houseDetails.heir.id]">
+        <div class="card-body">
+          <h5 class="card-title">Heir</h5>
+          <img id="{{item.heir}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.heir.name}}.jpg" (error)="hideImage(item.heir)"
+            style="height: 10vh">
+          <br> {{houseDetails.heir.name}}
+        </div>
+      </div>
+
+      <div class="card orange-hover text-center" *ngIf="item.overlord" [routerLink]="['/detail','houses',houseDetails.overlord.id]">
+        <div class="card-body">
+          <h5 class="card-title">Overlord</h5>
+          <img id="{{item.overlord}}" class="img-fluid" src="../assets/images/houses/{{houseDetails.overlord.name}}.jpg" (error)="hideImage(item.overlord)"
+            style="height: 10vh">
+          <br> {{houseDetails.overlord.name}}
+        </div>
+      </div>
+
+      <div class="card orange-hover text-center" *ngIf="item.founder" [routerLink]="['/detail','characters',houseDetails.founder.id]">
+        <div class="card-body">
+          <h5 class="card-title">Founder</h5>
+          <img id="founder" class="img-fluid" src="../assets/images/characters/{{houseDetails.founder.name}}.jpg" (error)="hideImage('founder')"
+            style="height: 10vh">
+          <br> {{houseDetails.founder.name}}
+        </div>
+      </div>
+
+    </div>
+    <!-- end card-deck -->
+
+    <div class="card-columns mt-5">
+
+      <div class="card" *ngIf="item.coatOfArms">
+        <div class="card-body">
+          <h5 class="card-title">Coat of Arms</h5>
+          <p class="card-text">{{item.coatOfArms}}</p>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="item.titles[0]">
+        <div class="card-body">
+          <h5 class="card-title">Titles</h5>
+          <p class="card-text">
+            <small>The titles that {{item.name}} holds.</small>
+          </p>
+          <ul class="list-group list-group-flush" *ngFor="let title of item.titles; index as i">
+            <li class="list-group-item">{{title}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="item.seats[0]">
+        <div class="card-body">
+          <h5 class="card-title">Seats</h5>
+          <p class="card-text">
+            <small>The seats that {{item.name}} holds.</small>
+          </p>
+          <ul class="list-group list-group-flush" *ngFor="let seat of item.seats">
+            <li class="list-group-item">{{seat}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="item.ancestralWeapons[0]">
+        <div class="card-body">
+            <h5 class="card-title">Ancestral Weapons</h5>
+          <p class="card-text">
+            <small>Names of the noteworthy weapons that {{item.name}} owns.</small>
+          </p>
+          <ul class="list-group list-group-flush" *ngFor="let weapon of item.ancestralWeapons">
+            <li class="list-group-item lead">{{weapon}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="item.cadetBranches[0]">
+        <div class="card-body">
+          <h5 class="card-title">Cadet Branches</h5>
+          <p class="card-text">
+            <small>Houses that was founded from {{item.name}}.</small>
+          </p>
+          <ul class="list-group list-group-flush" *ngFor="let house of houseDetails.cadetBranches; index as i">
+            <li class="list-group-item li-hover" [routerLink]="['/detail','houses',house.id]">
+              <img id="{{house.id}}" class="img-fluid mx-auto house-img" src="../assets/images/houses/{{house.name}}.jpg" style="width: 5vw"
+                (error)="hideImage(house.id)">
+              <br>{{house.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!-- end card-columns -->
+
+    <div class="top-margin" *ngIf="item.swornMembers[0]">
+      <h3 class="text-center">Sworn Members</h3>
+      <p class="text-center">Characters that are sworn to {{item.name}}.</p>
+      <div class="item-loader" [hidden]="houseDetails.swornMembers[0]"></div>
+      <div class="card-columns">
+        <div class="mx-auto" *ngFor="let character of houseDetails.swornMembers" style="width: 20vw">
+          <div class="card link" [routerLink]="['/detail','characters',character.id]">
+            <div class="row align-items-center">
+              <div class="col-auto py-0">
+                <img id="{{character.id}}" class="img-fluid" src="../assets/images/characters/{{character.name}}.jpg" style="height: 15vh"
+                  (error)="hideImage(character.id)">
+              </div>
+              <div class="col py-3">
+                <span>{{character.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- end houses category -->
+
+</div>
+<!-- end conatiner -->

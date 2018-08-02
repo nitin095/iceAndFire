@@ -1,0 +1,41 @@
+.navbar{
+    background: rgba(0, 0, 0, 0.8)!important
+}
+.navbar a{
+    font-family:Marcellus;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase
+}
+.navbar-text{
+    text-decoration: none;
+    transition: all 0.3s ease-in-out
+}
+.navbar-text:hover{
+    color: #F7B263
+}
+.navbar a.active{
+    color: rgba(247, 178, 99, 0.8);
+}
+.got{
+    font-family:  Game of Thrones;
+    font-size: 0.8rem
+}
+footer{
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0px -10px 16px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px -10px 16px -7px rgba(0,0,0,0.75);
+box-shadow: 0px -10px 16px -7px rgba(0,0,0,0.75);
+}
+footer span{
+    font-family: Marcellus;
+    color: grey;
+    font-size: small
+}
+footer a{
+    font-size: small;
+    color: grey
+}
+footer a:hover{
+    color: #F7B263
+}

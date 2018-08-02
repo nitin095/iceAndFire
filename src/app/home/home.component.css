@@ -1,0 +1,164 @@
+.jumbotron {
+    background-image: url(/assets/images/cover.jpg);
+    background-size: cover;
+    color: aliceblue;
+    height: 100vh;
+    position: relative;
+    margin-bottom: 5rem;
+    -webkit-box-shadow: 0px 10px 300px 18px rgba(74,61,49,0.48);
+    -moz-box-shadow: 0px 10px 300px 18px rgba(74,61,49,0.48);
+    box-shadow: 0px 10px 300px 18px rgba(74,61,49,0.48);
+}
+.jumbotron:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: -1px 10px 26px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 10px 26px -7px rgba(0,0,0,0.75);
+    box-shadow: -1px 10px 26px -7px rgba(0,0,0,0.75);
+}
+.jumbotron p{
+    font-size: 2rem
+}
+.jumbotron h1, .jumbotron small, .jumbotron p{
+    background-image: url(/assets/images/text-bg.jpg);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+}
+.container{
+    font-family: Marcellus;
+    color: silver
+}
+.card{
+    background-image: url(/assets/images/card-bg.jpg);
+    background-size: cover;
+    color: silver;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-box-shadow: -1px 3px 50px -13px black;
+    -moz-box-shadow: -1px 3px 50px -13px black;
+    box-shadow: -1px 3px 50px -13px black;
+}
+.card:hover{
+    -webkit-box-shadow: inset 0px 0px 200px -7px #F7B263;
+    -moz-box-shadow: inset 0px 0px 200px -7px #F7B263;
+    box-shadow: inset 0px 0px 200px -7px #F7B263;
+}
+.card:focus{
+    outline-color: #F7B263
+}
+.book-card-img{
+    height: 30vh;
+    width: auto;
+    display: block;
+    margin: auto;
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+}
+.shadow{
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+}
+.card-img-container{
+    background-color:rgba(242, 242, 242, 0.1)
+}
+.card-title{
+    font-weight:500
+}
+.card-text small:first-child{
+    font-weight: bold;
+    color: grey
+}
+.reduced-line-height{
+    line-height: 80%
+}
+.line-height-70{
+    line-height: 1rem;
+}
+.search-input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #F7B263;
+    width: 80%;
+    transition: all 0.5s ease
+}
+.search-input:focus{
+    outline: none;
+    color: white;
+    width: 90%
+}
+.checkbox-row{
+    background: rgba(247, 178, 99, 0.2);
+    padding: 0.3rem 1rem;
+}
+.checkbox-row small{
+    font-weight: bolder
+}
+.filter-row{
+    background: rgba(0, 0, 0, 0.5)
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label {
+    margin: 0px;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:13px;
+    height:13px;
+    margin:-4px 10px 0 0;
+    vertical-align:middle;
+    background:grey;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:#F7B263
+}
+.showing-row span{
+    cursor: pointer;
+    color: grey
+}
+.showing-row span:hover{
+    color: #fff
+}
+.showing-row .active{
+    color: #F7B263
+}
+.sortBy-select{
+    background: none;
+    color: grey;
+    border: none;
+    border-bottom: 1px solid #F7B263;
+    width: 70%
+}
+.sortBy-select:focus{
+    outline: none;
+}
+.sortBy-select option{
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff
+ }
+.filter-button{
+    color: grey;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out
+}
+.filter-button:hover{
+    color: #F7B263
+}
+.active{
+    color: #F7B263
+}
