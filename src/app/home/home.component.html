@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center" style="font-family: Game of Thrones">
     <div class="row align-items-center justify-content-center" style="height: 80vh">
-      <div class="col-auto">
+      <div class="col-12">
         <h1 class="display-4">Ice and Fire Universe</h1>
         <p>
           <small>and</small>
@@ -14,19 +14,19 @@
 <!-- end jumbotron -->
 
 <div class="container">
-  <div class="row my-5 justify-content-end">
+  <div class="row my-5 justify-content-end align-items-center">
     <h3 class="col-12 text-center">Characters, Houses and Books</h3>
 
     <!-- category filter -->
     <div class="col-12">
       <div class="row justify-content-center">
         <div class="col-auto">
-          <div class="row align-items-center checkbox-row showing-row">
-            <small class="mr-3 text-uppercase">Showing</small>
-            <span class="col" (click)="visibleItems = allItems;select('all')" [ngClass]="{active: isActive('all')}">All</span>
-            <span class="col" (click)="filterCategories('books')" [ngClass]="{active: isActive('books')}">Books</span>
-            <span class="col" (click)="filterCategories('characters')" [ngClass]="{active: isActive('characters')}">Characters</span>
-            <span class="col" (click)="filterCategories('houses')" [ngClass]="{active: isActive('houses')}">Houses</span>
+          <div class="row align-items-center text-center checkbox-row showing-row">
+            <small class="col-12 col-sm-auto text-uppercase">Showing:</small>
+            <span class="col-6 col-sm-auto" (click)="visibleItems = allItems;select('all')" [ngClass]="{active: isActive('all')}">All</span>
+            <span class="col-6 col-sm-auto" (click)="filterCategories('books')" [ngClass]="{active: isActive('books')}">Books</span>
+            <span class="col-6 col-sm-auto" (click)="filterCategories('characters')" [ngClass]="{active: isActive('characters')}">Characters</span>
+            <span class="col-6 col-sm-auto" (click)="filterCategories('houses')" [ngClass]="{active: isActive('houses')}">Houses</span>
           </div>
         </div>
       </div>
@@ -34,66 +34,73 @@
     <!-- end category filter -->
 
     <!--books filter -->
-    <div class="col-2 mt-5" *ngIf="selected == 'books'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by publisher</small>
-        <select class="sortBy-select" [(ngModel)]="publisherSelect" (change)="filter('publisher',publisherSelect)">
+        <select class="col-12 sortBy-select" [(ngModel)]="publisherSelect" (change)="filter('publisher',publisherSelect)">
           <option *ngFor="let publisher of ['Bantam Books','Dabel Brothers Publishing','Tor Fantasy','Tor Books','Marvel']" value="{{publisher}}">{{publisher}}</option>
         </select>
       </div>
     </div>
-    <div class="col-2 mt-5" *ngIf="selected == 'books'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by year</small>
-        <select class="sortBy-select" [(ngModel)]="yearSelect" (change)="filter('released',yearSelect)">
+        <select class="col-12 sortBy-select" [(ngModel)]="yearSelect" (change)="filter('released',yearSelect)">
             <option *ngFor="let year of [1996,1999,2000,2005,2011,2013]" value="{{year}}">{{year}}</option>
         </select>
       </div>
     </div>
-    <div class="col-2 mt-5" *ngIf="selected == 'books'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
         <div class="row reduced-line-height">
           <small class="col-12 p-0">Filter by media type</small>
-          <select class="sortBy-select" [(ngModel)]="typeSelect" (change)="filter('mediaType',typeSelect)">
+          <select class="col-12 sortBy-select" [(ngModel)]="typeSelect" (change)="filter('mediaType',typeSelect)">
               <option *ngFor="let type of ['Hardcover','Hardback','GraphicNovel','Paperback']" value="{{type}}">{{type}}</option>
           </select>
         </div>
       </div>
-    <div class="col-2" *ngIf="selected == 'books'"></div>
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
+      <div class="row align-items-center">
+        <button class="filter-btn" (click)="publisherSelect=yearSelect=typeSelect=undefined;filterCategories('books')">reset filters</button>
+      </div>
+    </div>
     <!-- end books filter -->
 
+    <div class="col-12 mt-5" *ngIf="selected == 'characters'">
+      <div class="row align-items-center justify-content-center">
+        <button class="filter-btn" (click)="genderSelect=cultureSelect=aliveSelect=seriesSelect=undefined;filterCategories('characters')">reset filters</button>
+      </div>
+    </div>
     <!--characters filter -->
-    <div class="col-2 mt-5" *ngIf="selected == 'characters'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'characters'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by gender</small>
-        <select class="sortBy-select" [(ngModel)]="genderSelect" (change)="filter('gender',genderSelect)">
-          <option value="reset">All</option>
+        <select class="col-12 sortBy-select" [(ngModel)]="genderSelect" (change)="filter('gender',genderSelect)">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </div>
     </div>
-    <div class="col-2 mt-5" *ngIf="selected == 'characters'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'characters'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by culture</small>
-        <select class="sortBy-select" [(ngModel)]="cultureSelect" (change)="getFilteresItems('characters','culture='+cultureSelect)">
+        <select class="col-12 sortBy-select" [(ngModel)]="cultureSelect" (change)="getFilteresItems('characters','culture='+cultureSelect)">
           <option *ngFor="let culture of ['Andal','Braavosi','Crannogmen','Ghiscari','Ironborn','Northmen','Rhoynar','Valyrian']" value="{{culture}}">{{culture}}</option>
         </select>
       </div>
     </div>
-    <div class="col-2 mt-5" *ngIf="selected == 'characters'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'characters'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by dead or alive</small>
-        <select class="sortBy-select" [(ngModel)]="aliveSelect"  (change)="getFilteresItems('characters','isAlive='+aliveSelect)">
+        <select class="col-12 sortBy-select" [(ngModel)]="aliveSelect"  (change)="getFilteresItems('characters','isAlive='+aliveSelect)">
           <option value="true">Alive</option>
           <option value="false">Dead</option>
         </select>
       </div>
     </div>
-    <div class="col-2 mt-5" *ngIf="selected == 'characters'">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'characters'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by tv series</small>
-        <select class="sortBy-select" [(ngModel)]="seriesSelect" (change)="filter('tvSeries',seriesSelect)">
-          <option value="reset">All</option>
+        <select class="col-12 sortBy-select" [(ngModel)]="seriesSelect" (change)="filter('tvSeries',seriesSelect)">
           <option *ngFor="let season of [1,2,3,4,5,6]" value="Season {{season}}">Season {{season}}</option>
         </select>
       </div>
@@ -101,31 +108,35 @@
     <!-- end characters filter -->
 
     <!--houses filter -->
-    <div class="col-2 mt-5" *ngIf="selected == 'houses'">
+    <div class="col-6 col-md-3 col-lg-2 mt-5 px-5 mx-auto" *ngIf="selected == 'houses'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by region</small>
-        <select class="sortBy-select" [(ngModel)]="regionSelect" (change)="filter('region',regionSelect)">
-          <option value="reset">All</option>
+        <select class="col-12 sortBy-select" [(ngModel)]="regionSelect" (change)="filter('region',regionSelect)">
           <option *ngFor="let region of ['The Westerlands','Dorne','The North','The Reach','The Vale','The Riverlands']" value="{{region}}">{{region}}</option>
         </select>
       </div>
     </div>
-    <div class="col-6 mt-5" *ngIf="selected == 'houses'">
-      <div class="row">
-        <small class="col-12 p-0 pb-1">Having</small>
+    <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 mt-5 px-5" *ngIf="selected == 'houses'">
+      <div class="row justify-content-center">
+        <small class="col-12 p-0 pb-1 text-center text-sm-left">Having</small>
         <small class="pr-3 filter-button" (click)="houseFilters('hasWords=true')" [ngClass]="{active: filterFields.includes('hasWords')}">Words</small>
         <small class="pr-3 filter-button" (click)="houseFilters('hasTitles=true')" [ngClass]="{active: filterFields.includes('hasTitles')}">Titles</small>
         <small class="pr-3 filter-button" (click)="houseFilters('hasSeats=true')" [ngClass]="{active: filterFields.includes('hasSeats')}">Seats</small>
         <small class="filter-button" (click)="houseFilters('hasAncestralWeapons=true')" [ngClass]="{active: filterFields.includes('hasAncestralWeapons')}">Ancestoral waepons</small>
       </div>
     </div>
+    <div class="col-12 col-sm-3 col-md-2 col-lg-1 col-xl-2 mt-5" *ngIf="selected == 'houses'">
+      <div class="row align-items-center mx-auto">
+        <button class="filter-btn ml-2 m-xl-0" (click)="regionSelect=undefined;filterFields='';filterCategories('houses')">reset filters</button>
+      </div>
+    </div>
     <!-- end houses filter -->
 
     <!-- sort -->
-    <div class="col-2 mt-5">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Sort by</small>
-        <select class="sortBy-select" [(ngModel)]="sortField" (change)="sortBy(sortField)">
+        <select class="col-12 sortBy-select" [(ngModel)]="sortField" (change)="sortBy(sortField)">
           <option value="name"> Name</option>
           <option value="url" *ngIf="selected == 'all'">Type</option>
           <option value="released" *ngIf="selected == 'books'">Released Year</option>
@@ -139,10 +150,10 @@
     <!-- end sort -->
 
     <!-- search -->
-    <div class="col-2 mt-5">
+    <div class="col-6 col-md-4 col-lg-2 mt-5 px-5">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Search by name</small>
-        <input class="search-input" type="text" [(ngModel)]="searchInput" placeholder="{{(selected == 'all') ? 'Books, Characters or Houses' : 'Search '+ selected}}">
+        <input class="col-12 search-input" type="text" [(ngModel)]="searchInput" placeholder="{{(selected == 'all') ? 'Books, Characters or Houses' : 'Search '+ selected}}">
       </div>
     </div>
     <!-- end search -->
@@ -152,7 +163,7 @@
 
   <div class="item-loader" [hidden]="visibleItems.length>0"></div>
   <div class="row text-center align-items-center" *ngIf="visibleItems.length>0">
-    <div class="col-3" *ngFor="let item of visibleItems | search: searchInput; index as i" [attr.data-index]="i">
+    <div class="col-6 col-sm-4 col-lg-3" *ngFor="let item of visibleItems | search: searchInput; index as i" [attr.data-index]="i">
 
       <!-- book card -->
       <div *ngIf="item.isbn" class="card my-3" [routerLink]="['/detail','books',item.url.substring(item.url.lastIndexOf('/')+1)]">
