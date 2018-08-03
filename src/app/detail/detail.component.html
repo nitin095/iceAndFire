@@ -15,39 +15,56 @@
           </div>
           <div class="col-12 item-data">
             <div class="row" *ngIf="item.mediaType">
-              <div class="col-6 text-right text-muted">Media type:</div>{{item.mediaType}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Media type:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.mediaType}}</div></div>
             <div class="row" *ngIf="item.publisher">
-              <div class="col-6 text-right text-muted">Publisher:</div>{{item.publisher}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Publisher:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.publisher}}</div></div>
             <div class="row" *ngIf="item.numberOfPages">
-              <div class="col-6 text-right text-muted">Number of pages:</div>{{item.numberOfPages}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Number of pages:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.numberOfPages}}</div></div>
             <div class="row" *ngIf="item.isbn">
-              <div class="col-6 text-right text-muted">ISBN:</div>{{item.isbn}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">ISBN:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.isbn}}</div></div>
             <div class="row" *ngIf="item.country">
-              <div class="col-6 text-right text-muted">Country:</div>{{item.country}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Country:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.country}}</div></div>
             <div class="row" *ngIf="item.released">
-              <div class="col-6 text-right text-muted">Released:</div>{{item.released | date: 'longDate' }}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Released:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.released | date: 'longDate' }}</div></div>
             <div class="row" *ngIf="item.culture">
-              <div class="col-6 text-right text-muted">Culture:</div>{{item.culture}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Culture:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.culture}}</div></div>
             <div class="row" *ngIf="item.gender">
-              <div class="col-6 text-right text-muted">Gender:</div>{{item.gender}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Gender:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.gender}}</div></div>
             <div class="row" *ngIf="item.born">
-              <div class="col-6 text-right text-muted">Born:</div>{{item.born}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Born:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.born}}</div></div>
             <div class="row" *ngIf="item.died">
-              <div class="col-6 text-right text-muted">Died:</div><div class="col p-0 text-left">{{item.died}}</div></div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Died:</div>
+              <div class="col p-0 text-center text-sm-left">{{item.died}}</div></div>
             <div class="row link" *ngIf="item.father" [routerLink]="['/detail','characters',characterDetails.father.id]">
-              <div class="col-6 text-right text-muted">Father:</div>{{characterDetails.father.name}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Father:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.father.name}}</div></div>
             <div class="row link" *ngIf="item.mother" [routerLink]="['/detail','characters',characterDetails.mother.id]">
-              <div class="col-6 text-right text-muted">Mother:</div>{{characterDetails.mother.name}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Mother:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.mother.name}}</div></div>
             <div class="row link" *ngIf="item.spouse" [routerLink]="['/detail','characters',characterDetails.spouse.id]">
-              <div class="col-6 text-right text-muted">Spouse:</div>{{characterDetails.spouse.name}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Spouse:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.spouse.name}}</div></div>
             <div class="row" *ngIf="item.region">
-              <div class="col-6 text-right text-muted">Region:</div>{{item.region}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Region:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.region}}</div></div>
             <div class="row" *ngIf="item.words">
-              <div class="col-6 text-right text-muted">Words:</div>{{item.words}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Words:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.words}}</div></div>
             <div class="row" *ngIf="item.founded">
-              <div class="col-6 text-right text-muted">Founded:</div>{{item.founded}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Founded:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.founded}}</div></div>
             <div class="row" *ngIf="item.diedOut">
-              <div class="col-6 text-right text-muted">Died Out:</div>{{item.diedOut}}</div>
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Died Out:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.diedOut}}</div></div>
           </div>
           <!-- end item-data -->
         </div>
@@ -367,7 +384,7 @@
       <p class="text-center">Characters that are sworn to {{item.name}}.</p>
       <div class="item-loader" [hidden]="houseDetails.swornMembers[0]"></div>
       <div class="card-columns">
-        <div class="mx-auto" *ngFor="let character of houseDetails.swornMembers" style="width: 20vw">
+        <div class="mx-auto" *ngFor="let character of houseDetails.swornMembers">
           <div class="card link" [routerLink]="['/detail','characters',character.id]">
             <div class="row align-items-center">
               <div class="col-auto py-0">
