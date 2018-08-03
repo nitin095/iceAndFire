@@ -3,7 +3,7 @@
 <div class="container mt-5" *ngIf="item">
   <div class="card black-tint" style="width: 60vw;margin: auto">
     <div class="row align-items-center text-center">
-      <div class="col-auto" id="item-img">
+      <div class="col-12 col-lg-auto" id="item-img">
         <img class="img-fluid" src="../assets/images/{{category}}/{{item.name}}.jpg" (error)="hideImage('item-img')">
       </div>
       <div class="col py-5">
@@ -97,7 +97,7 @@
     <div class="item-loader" [hidden]="bookDetails.characters[0]"></div>
     <div class="card-columns">
       <div *ngFor="let character of bookDetails.characters | search: searchInput; let i=index">
-        <div class="card link" *ngIf="i<bookDetails.displayCharactersNumber" style="width: 20vw" [routerLink]="['/detail','characters',character.id]">
+        <div class="card link" *ngIf="i<bookDetails.displayCharactersNumber"  [routerLink]="['/detail','characters',character.id]">
           <div class="row align-items-center">
             <div class="col-auto py-0">
               <img id="{{character.id}}" class="img-fluid" src="../assets/images/characters/{{character.name}}.jpg" style="height: 15vh"
@@ -126,8 +126,7 @@
       <div class="item-loader" [hidden]="bookDetails.povCharacters[0]"></div>
       <div class="card-columns">
         <div *ngFor="let character of bookDetails.povCharacters; let i=index">
-          <div class="card link" *ngIf="i<bookDetails.displayPovCharactersNumber" [routerLink]="['/detail','characters',character.id]"
-            style="width: 20vw">
+          <div class="card link" *ngIf="i<bookDetails.displayPovCharactersNumber" [routerLink]="['/detail','characters',character.id]">
             <div class="row align-items-center">
               <div class="col-auto py-0">
                 <img id="pov-{{character.id}}" class="img-fluid" src="../assets/images/characters/{{character.name}}.jpg" style="height: 15vh"

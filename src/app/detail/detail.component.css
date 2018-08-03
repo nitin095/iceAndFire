@@ -135,3 +135,33 @@ h3{
 .black-bg{
     background: rgba(0,0,0,0.5)
 }
+
+/* media queries */
+
+/*extra small devices*/
+@media screen and (max-width: 575px) {    
+    .card-columns {
+        column-count: 1;
+      }
+}
+
+/*small devices*/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .card-columns {
+        column-count: 2;
+      }
+ }
+
+/*large devices*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    /* .card-columns {
+          column-count: 4;
+        } */
+}
+
+/*extra large devices*/
+@media screen and (min-width: 1200px) {
+    .card-columns {
+          column-count: 4;
+      }
+}
