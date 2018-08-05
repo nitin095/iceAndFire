@@ -132,7 +132,7 @@
     <div class="card text-center" *ngIf="character.playedBy[0]">
       <div class="card-body">
         <h5 class="card-title">Played by</h5>
-        <img class="img-fluid" src="../assets/images/actors/{{character.playedBy}}.jpg" style="height: 20vh">
+        <img id="{{character.playedBy[0]}}" class="img-fluid" src="../assets/images/actors/{{character.playedBy}}.jpg" style="height: 20vh" (error)="hideImage(character.playedBy[0])">
         <br> {{character.playedBy}}
       </div>
     </div>
