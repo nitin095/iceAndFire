@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { DetailComponent } from './detail/detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { RouterModule, Routes } from '@angular/router'
@@ -19,7 +18,6 @@ import { HouseComponent } from './house/house.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailComponent,
     NotFoundComponent,
     SearchPipe,
     BookComponent,
@@ -36,7 +34,6 @@ import { HouseComponent } from './house/house.component';
       { path: 'book/:id', component: BookComponent },
       { path: 'character/:id', component: CharacterComponent},
       { path: 'house/:id', component: HouseComponent},
-      { path: 'detail/:category/:id', component: DetailComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
