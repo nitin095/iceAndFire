@@ -11,26 +11,28 @@ import { Location } from '@angular/common';
 })
 export class CharacterComponent implements OnInit {
 
-  public item;
+  public character;
   public characterDetails: any;
 
   constructor(private _route: ActivatedRoute, public router: Router, public httpService: HttpService, private location: Location) { }
 
   ngOnInit() {
-    let itemId = this._route.snapshot.paramMap.get('id');
-    let details = this.httpService.getDetails("characters", itemId).subscribe(
-      data => {
-        details = data;
-        this.item = details;
-        this.getCharacterData();
-      },
-      error => {
-        console.log(error.errorMessage)
-      }
-    )
+    this._route.params.subscribe(params => {
+      this.character = undefined;
+      let itemId = this._route.snapshot.paramMap.get('id');
+      this.httpService.getDetails("characters", itemId).subscribe(
+        data => {
+          this.character = data;
+          this.getCharacterData();
+        },
+        error => {
+          console.log(error.errorMessage)
+        }
+      )
+    });
   }
 
-  
+
   getCharacterData = () => {
     this.characterDetails = {
       father: {},
@@ -40,8 +42,8 @@ export class CharacterComponent implements OnInit {
       povBooks: [],
       allegiances: []
     };
-    if (this.item.father) {
-      this.httpService.getDetailsByUrl(this.item.father).subscribe(
+    if (this.character.father) {
+      this.httpService.getDetailsByUrl(this.character.father).subscribe(
         data => {
           this.characterDetails.father = { name: data.name, id: this.getId(data.url) }
         },
@@ -50,8 +52,8 @@ export class CharacterComponent implements OnInit {
         }
       )
     }
-    if (this.item.mother) {
-      this.httpService.getDetailsByUrl(this.item.mother).subscribe(
+    if (this.character.mother) {
+      this.httpService.getDetailsByUrl(this.character.mother).subscribe(
         data => {
           this.characterDetails.mother = { name: data.name, id: this.getId(data.url) }
         },
@@ -60,8 +62,8 @@ export class CharacterComponent implements OnInit {
         }
       )
     }
-    if (this.item.spouse) {
-      this.httpService.getDetailsByUrl(this.item.spouse).subscribe(
+    if (this.character.spouse) {
+      this.httpService.getDetailsByUrl(this.character.spouse).subscribe(
         data => {
           this.characterDetails.spouse = { name: data.name, id: this.getId(data.url) }
         },
@@ -70,7 +72,7 @@ export class CharacterComponent implements OnInit {
         }
       )
     }
-    for (let book of this.item.books) {
+    for (let book of this.character.books) {
       this.httpService.getDetailsByUrl(book).subscribe(
         data => {
           this.characterDetails.books.push({ name: data.name, id: this.getId(data.url) })
@@ -80,7 +82,7 @@ export class CharacterComponent implements OnInit {
         }
       )
     }//end for
-    for (let book of this.item.povBooks) {
+    for (let book of this.character.povBooks) {
       this.httpService.getDetailsByUrl(book).subscribe(
         data => {
           this.characterDetails.povBooks.push({ name: data.name, id: this.getId(data.url) })
@@ -90,7 +92,7 @@ export class CharacterComponent implements OnInit {
         }
       )
     }//end for
-    for (let house of this.item.allegiances) {
+    for (let house of this.character.allegiances) {
       this.httpService.getDetailsByUrl(house).subscribe(
         data => {
           this.characterDetails.allegiances.push({ name: data.name, id: this.getId(data.url) })
@@ -103,8 +105,8 @@ export class CharacterComponent implements OnInit {
     console.log(this.characterDetails)
   }//end getCharacterData
 
-   // function to extract id from a resource url
-   getId(url): number {
+  // function to extract id from a resource url
+  getId(url): number {
     return url.substring(url.lastIndexOf('/') + 1)
   }
 
@@ -112,6 +114,11 @@ export class CharacterComponent implements OnInit {
   hideImage = (id) => {
     console.log('HANDLING IMAGE ERROR!')
     document.getElementById(id).style.display = "none"
+  }
+
+   // function to go back to previous location
+   goBack(): any {
+    this.location.back();
   }
 
 }

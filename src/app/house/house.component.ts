@@ -12,19 +12,19 @@ import { Location } from '@angular/common';
 })
 export class HouseComponent implements OnInit {
 
-  public item;
+  public house;
   public houseDetails: any;
 
   constructor(private _route: ActivatedRoute, public router: Router, public httpService: HttpService, private location: Location) { }
 
   ngOnInit() {
     this._route.params.subscribe(params => {
-      this.item = undefined;
+      this.house = undefined;
       let itemId = this._route.snapshot.paramMap.get('id');
       let details = this.httpService.getDetails("houses", itemId).subscribe(
         data => {
           details = data;
-          this.item = details;
+          this.house = details;
           this.getHouseData();
         },
         error => {
@@ -44,8 +44,8 @@ export class HouseComponent implements OnInit {
       cadetBranches: [],
       swornMembers: []
     };
-    if (this.item.currentLord) {
-      this.httpService.getDetailsByUrl(this.item.currentLord).subscribe(
+    if (this.house.currentLord) {
+      this.httpService.getDetailsByUrl(this.house.currentLord).subscribe(
         data => {
           this.houseDetails.currentLord = { name: data.name, id: this.getId(data.url) }
         },
@@ -54,8 +54,8 @@ export class HouseComponent implements OnInit {
         }
       )
     }
-    if (this.item.heir) {
-      this.httpService.getDetailsByUrl(this.item.heir).subscribe(
+    if (this.house.heir) {
+      this.httpService.getDetailsByUrl(this.house.heir).subscribe(
         data => {
           this.houseDetails.heir = { name: data.name, id: this.getId(data.url) }
         },
@@ -64,8 +64,8 @@ export class HouseComponent implements OnInit {
         }
       )
     }
-    if (this.item.overlord) {
-      this.httpService.getDetailsByUrl(this.item.overlord).subscribe(
+    if (this.house.overlord) {
+      this.httpService.getDetailsByUrl(this.house.overlord).subscribe(
         data => {
           this.houseDetails.overlord = { name: data.name, id: this.getId(data.url) }
         },
@@ -74,8 +74,8 @@ export class HouseComponent implements OnInit {
         }
       )
     }
-    if (this.item.founder) {
-      this.httpService.getDetailsByUrl(this.item.founder).subscribe(
+    if (this.house.founder) {
+      this.httpService.getDetailsByUrl(this.house.founder).subscribe(
         data => {
           this.houseDetails.founder = { name: data.name, id: this.getId(data.url) }
         },
@@ -84,7 +84,7 @@ export class HouseComponent implements OnInit {
         }
       )
     }
-    for (let house of this.item.cadetBranches) {
+    for (let house of this.house.cadetBranches) {
       this.httpService.getDetailsByUrl(house).subscribe(
         data => {
           this.houseDetails.cadetBranches.push({ name: data.name, id: this.getId(data.url) })
@@ -94,7 +94,7 @@ export class HouseComponent implements OnInit {
         }
       )
     }//end for
-    for (let character of this.item.swornMembers) {
+    for (let character of this.house.swornMembers) {
       this.httpService.getDetailsByUrl(character).subscribe(
         data => {
           this.houseDetails.swornMembers.push({ name: data.name, id: this.getId(data.url) })
@@ -119,7 +119,7 @@ export class HouseComponent implements OnInit {
   }
 
   // function to go back to previous location
-  goback(): any {
+  goBack(): any {
     this.location.back();
   }
 

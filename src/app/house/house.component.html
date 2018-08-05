@@ -1,30 +1,30 @@
-<div class="loader" [hidden]="item"></div>
-<div class="back-btn" (click)="goback()">back</div>
-<div class="container mt-5" *ngIf="item">
+<div class="loader" [hidden]="house"></div>
+<div class="back-btn" (click)="goBack()">back</div>
+<div class="container mt-5" *ngIf="house">
   <div class="card black-tint" style="width: 60vw;margin: auto">
-    <div class="row align-items-center text-center">
-      <div class="col-12 col-lg-auto" id="item-img">
-        <img class="img-fluid" src="../assets/images/houses/{{item.name}}.jpg" (error)="hideImage('item-img')">
+    <div class="row align-items-center p-2 text-center">
+      <div class="col-12 col-lg-4" id="house-img">
+        <img class="img-fluid" src="../assets/images/houses/{{house.name}}.jpg" (error)="hideImage('house-img')">
       </div>
-      <div class="col py-5">
+      <div class="col">
         <div class="row">
           <div class="col-12 item-name">
-            <span>{{item.name | uppercase}}</span>
+            <span>{{house.name | uppercase}}</span>
             <hr>
           </div>
           <div class="col-12 item-data">
-            <div class="row" *ngIf="item.region">
+            <div class="row" *ngIf="house.region">
               <div class="col-12 col-sm-6 text-sm-right text-muted">Region:</div>
-              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.region}}</div></div>
-            <div class="row" *ngIf="item.words">
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{house.region}}</div></div>
+            <div class="row" *ngIf="house.words">
               <div class="col-12 col-sm-6 text-sm-right text-muted">Words:</div>
-              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.words}}</div></div>
-            <div class="row" *ngIf="item.founded">
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{house.words}}</div></div>
+            <div class="row" *ngIf="house.founded">
               <div class="col-12 col-sm-6 text-sm-right text-muted">Founded:</div>
-              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.founded}}</div></div>
-            <div class="row" *ngIf="item.diedOut">
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{house.founded}}</div></div>
+            <div class="row" *ngIf="house.diedOut">
               <div class="col-12 col-sm-6 text-sm-right text-muted">Died Out:</div>
-              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.diedOut}}</div></div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{house.diedOut}}</div></div>
           </div>
           <!-- end item-data -->
         </div>
@@ -35,34 +35,34 @@
 
   <div class="mt-5">
     <div class="card-deck">
-      <div class="card orange-hover text-center" *ngIf="item.currentLord" [routerLink]="['/character',houseDetails.currentLord.id]">
+      <div class="card orange-hover text-center" *ngIf="house.currentLord" [routerLink]="['/character',houseDetails.currentLord.id]">
         <div class="card-body">
           <h5 class="card-title">Current lord</h5>
-          <img id="{{item.currentLord}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.currentLord.name}}.jpg"
-            (error)="hideImage(item.currentLord)" style="height: 10vh">
+          <img id="{{house.currentLord}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.currentLord.name}}.jpg"
+            (error)="hideImage(house.currentLord)" style="height: 10vh">
           <br> {{houseDetails.currentLord.name}}
         </div>
       </div>
 
-      <div class="card orange-hover text-center" *ngIf="item.heir" [routerLink]="['/character',houseDetails.heir.id]">
+      <div class="card orange-hover text-center" *ngIf="house.heir" [routerLink]="['/character',houseDetails.heir.id]">
         <div class="card-body">
           <h5 class="card-title">Heir</h5>
-          <img id="{{item.heir}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.heir.name}}.jpg" (error)="hideImage(item.heir)"
+          <img id="{{house.heir}}" class="img-fluid" src="../assets/images/characters/{{houseDetails.heir.name}}.jpg" (error)="hideImage(house.heir)"
             style="height: 10vh">
           <br> {{houseDetails.heir.name}}
         </div>
       </div>
 
-      <div class="card orange-hover text-center" *ngIf="item.overlord" [routerLink]="['/house',houseDetails.overlord.id]">
+      <div class="card orange-hover text-center" *ngIf="house.overlord" [routerLink]="['/house',houseDetails.overlord.id]">
         <div class="card-body">
           <h5 class="card-title">Overlord</h5>
-          <img id="{{item.overlord}}" class="img-fluid" src="../assets/images/houses/{{houseDetails.overlord.name}}.jpg" (error)="hideImage(item.overlord)"
+          <img id="{{house.overlord}}" class="img-fluid" src="../assets/images/houses/{{houseDetails.overlord.name}}.jpg" (error)="hideImage(house.overlord)"
             style="height: 10vh">
           <br> {{houseDetails.overlord.name}}
         </div>
       </div>
 
-      <div class="card orange-hover text-center" *ngIf="item.founder" [routerLink]="['/character',houseDetails.founder.id]">
+      <div class="card orange-hover text-center" *ngIf="house.founder" [routerLink]="['/character',houseDetails.founder.id]">
         <div class="card-body">
           <h5 class="card-title">Founder</h5>
           <img id="founder" class="img-fluid" src="../assets/images/characters/{{houseDetails.founder.name}}.jpg" (error)="hideImage('founder')"
@@ -76,54 +76,54 @@
 
     <div class="card-columns mt-5">
 
-      <div class="card" *ngIf="item.coatOfArms">
+      <div class="card" *ngIf="house.coatOfArms">
         <div class="card-body">
           <h5 class="card-title">Coat of Arms</h5>
-          <p class="card-text">{{item.coatOfArms}}</p>
+          <p class="card-text">{{house.coatOfArms}}</p>
         </div>
       </div>
 
-      <div class="card" *ngIf="item.titles[0]">
+      <div class="card" *ngIf="house.titles[0]">
         <div class="card-body">
           <h5 class="card-title">Titles</h5>
           <p class="card-text">
-            <small>The titles that {{item.name}} holds.</small>
+            <small>The titles that {{house.name}} holds.</small>
           </p>
-          <ul class="list-group list-group-flush" *ngFor="let title of item.titles; index as i">
+          <ul class="list-group list-group-flush" *ngFor="let title of house.titles; index as i">
             <li class="list-group-item">{{title}}</li>
           </ul>
         </div>
       </div>
 
-      <div class="card" *ngIf="item.seats[0]">
+      <div class="card" *ngIf="house.seats[0]">
         <div class="card-body">
           <h5 class="card-title">Seats</h5>
           <p class="card-text">
-            <small>The seats that {{item.name}} holds.</small>
+            <small>The seats that {{house.name}} holds.</small>
           </p>
-          <ul class="list-group list-group-flush" *ngFor="let seat of item.seats">
+          <ul class="list-group list-group-flush" *ngFor="let seat of house.seats">
             <li class="list-group-item">{{seat}}</li>
           </ul>
         </div>
       </div>
 
-      <div class="card" *ngIf="item.ancestralWeapons[0]">
+      <div class="card" *ngIf="house.ancestralWeapons[0]">
         <div class="card-body">
             <h5 class="card-title">Ancestral Weapons</h5>
           <p class="card-text">
-            <small>Names of the noteworthy weapons that {{item.name}} owns.</small>
+            <small>Names of the noteworthy weapons that {{house.name}} owns.</small>
           </p>
-          <ul class="list-group list-group-flush" *ngFor="let weapon of item.ancestralWeapons">
+          <ul class="list-group list-group-flush" *ngFor="let weapon of house.ancestralWeapons">
             <li class="list-group-item lead">{{weapon}}</li>
           </ul>
         </div>
       </div>
 
-      <div class="card" *ngIf="item.cadetBranches[0]">
+      <div class="card" *ngIf="house.cadetBranches[0]">
         <div class="card-body">
           <h5 class="card-title">Cadet Branches</h5>
           <p class="card-text">
-            <small>Houses that was founded from {{item.name}}.</small>
+            <small>Houses that was founded from {{house.name}}.</small>
           </p>
           <ul class="list-group list-group-flush" *ngFor="let house of houseDetails.cadetBranches; index as i">
             <li class="list-group-item li-hover" [routerLink]="['/house',house.id]">
@@ -138,9 +138,9 @@
     </div>
     <!-- end card-columns -->
 
-    <div class="top-margin" *ngIf="item.swornMembers[0]">
+    <div class="top-margin" *ngIf="house.swornMembers[0]">
       <h3 class="text-center">Sworn Members</h3>
-      <p class="text-center">Characters that are sworn to {{item.name}}.</p>
+      <p class="text-center">Characters that are sworn to {{house.name}}.</p>
       <div class="item-loader" [hidden]="houseDetails.swornMembers[0]"></div>
       <div class="card-columns">
         <div class="mx-auto" *ngFor="let character of houseDetails.swornMembers">

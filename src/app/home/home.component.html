@@ -46,18 +46,18 @@
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by year</small>
         <select class="col-12 sortBy-select" [(ngModel)]="yearSelect" (change)="filter('released',yearSelect)">
-            <option *ngFor="let year of [1996,1999,2000,2005,2011,2013]" value="{{year}}">{{year}}</option>
+          <option *ngFor="let year of [1996,1999,2000,2005,2011,2013]" value="{{year}}">{{year}}</option>
         </select>
       </div>
     </div>
     <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
-        <div class="row reduced-line-height">
-          <small class="col-12 p-0">Filter by media type</small>
-          <select class="col-12 sortBy-select" [(ngModel)]="typeSelect" (change)="filter('mediaType',typeSelect)">
-              <option *ngFor="let type of ['Hardcover','Hardback','GraphicNovel','Paperback']" value="{{type}}">{{type}}</option>
-          </select>
-        </div>
+      <div class="row reduced-line-height">
+        <small class="col-12 p-0">Filter by media type</small>
+        <select class="col-12 sortBy-select" [(ngModel)]="typeSelect" (change)="filter('mediaType',typeSelect)">
+          <option *ngFor="let type of ['Hardcover','Hardback','GraphicNovel','Paperback']" value="{{type}}">{{type}}</option>
+        </select>
       </div>
+    </div>
     <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'books'">
       <div class="row align-items-center">
         <button class="filter-btn" (click)="publisherSelect=yearSelect=typeSelect=undefined;filterCategories('books')">reset filters</button>
@@ -91,7 +91,7 @@
     <div class="col-6 col-md-4 col-lg-2 mt-5 px-5" *ngIf="selected == 'characters'">
       <div class="row reduced-line-height">
         <small class="col-12 p-0">Filter by dead or alive</small>
-        <select class="col-12 sortBy-select" [(ngModel)]="aliveSelect"  (change)="getFilteresItems('characters','isAlive='+aliveSelect)">
+        <select class="col-12 sortBy-select" [(ngModel)]="aliveSelect" (change)="getFilteresItems('characters','isAlive='+aliveSelect)">
           <option value="true">Alive</option>
           <option value="false">Dead</option>
         </select>
@@ -193,7 +193,9 @@
             <div class="col">
               <h5 class="card-title my-1">{{item.name}}</h5>
               <p class="card-text">
-                <span *ngIf="item.name !== item.aliases[0]">{{item.aliases[0]}}<br></span>
+                <span *ngIf="item.name !== item.aliases[0]">{{item.aliases[0]}}
+                  <br>
+                </span>
                 <small *ngIf="item.culture">Culture: {{item.culture}}</small>
               </p>
             </div>

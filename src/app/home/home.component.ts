@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   public allItems = [];
   public visibleItems = [];
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public selected: any = 'all';
   public filterFields: string = "";
 
-  constructor(public httpService: HttpService, private elementRef: ElementRef) {
+  constructor(public httpService: HttpService) {
     console.log("home component constructor called");
   }
 
@@ -146,10 +146,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.filterFields += `&${filter}`;
       this.getFilteresItems('houses', this.filterFields)
     }
-  }
-
-  ngAfterViewInit() {
-    // this.elementRef.nativeElement.ownerDocument.body.style = 'background-image: linear-gradient(to right bottom, #000000, #090707, #100d0c, #151210, #181714);';
   }
 
 }

@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 
 export class BookComponent implements OnInit {
 
-  public item;
+  public book;
   public bookDetails: any;
 
   constructor(private _route: ActivatedRoute, public router: Router, public httpService: HttpService, private location: Location) { }
@@ -22,7 +22,7 @@ export class BookComponent implements OnInit {
     let details = this.httpService.getDetails('books', itemId).subscribe(
       data => {
         details = data;
-        this.item = details;
+        this.book = details;
         this.getBookData();
       },
       error => {
@@ -38,7 +38,7 @@ export class BookComponent implements OnInit {
       displayCharactersNumber: 25,
       displayPovCharactersNumber: 25
     };
-    for (let character of this.item.characters) {
+    for (let character of this.book.characters) {
       this.httpService.getDetailsByUrl(character).subscribe(
         data => {
           if (data.name) {
@@ -52,7 +52,7 @@ export class BookComponent implements OnInit {
         }
       )
     }//end for 
-    for (let character of this.item.povCharacters) {
+    for (let character of this.book.povCharacters) {
       this.httpService.getDetailsByUrl(character).subscribe(
         data => {
           if (data.name) {
@@ -96,7 +96,7 @@ export class BookComponent implements OnInit {
   }
 
   // function to go back to previous location
-  goback(): any {
+  goBack(): any {
     this.location.back();
   }
 

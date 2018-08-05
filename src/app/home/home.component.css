@@ -28,6 +28,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-spacing: 5px;
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
 }
 .container{
@@ -37,7 +38,6 @@
 .filter-btn{
     background: none;
     padding: 0.2rem 0.5rem;
-    /* border: none; */
     border: 0.5px solid #F7B263;
     color: silver;
     font-weight: 600;
