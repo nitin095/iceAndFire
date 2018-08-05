@@ -1,0 +1,150 @@
+<div class="loader" [hidden]="item"></div>
+<div class="back-btn" (click)="goback()">back</div>
+<div class="container mt-5" *ngIf="item">
+  <div class="card black-tint" style="width: 60vw;margin: auto">
+    <div class="row align-items-center text-center">
+      <div class="col-12 col-lg-auto" id="item-img">
+        <img class="img-fluid" src="../assets/images/{{category}}/{{item.name}}.jpg" (error)="hideImage('item-img')">
+      </div>
+      <div class="col py-5">
+        <div class="row">
+          <div class="col-12 item-name">
+            <span [hidden]="!item.name">{{item.name | uppercase}}</span>
+            <span *ngIf="!item.name">{{item.aliases[0] | uppercase}}</span>
+            <hr>
+          </div>
+          <div class="col-12 item-data">
+            <div class="row" *ngIf="item.culture">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Culture:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.culture}}</div></div>
+            <div class="row" *ngIf="item.gender">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Gender:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.gender}}</div></div>
+            <div class="row" *ngIf="item.born">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Born:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{item.born}}</div></div>
+            <div class="row" *ngIf="item.died">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Died:</div>
+              <div class="col p-0 text-center text-sm-left">{{item.died}}</div></div>
+            <div class="row link" *ngIf="item.father" [routerLink]="['character',characterDetails.father.id]">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Father:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.father.name}}</div></div>
+            <div class="row link" *ngIf="item.mother" [routerLink]="['character',characterDetails.mother.id]">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Mother:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.mother.name}}</div></div>
+            <div class="row link" *ngIf="item.spouse" [routerLink]="['character',characterDetails.spouse.id]">
+              <div class="col-12 col-sm-6 text-sm-right text-muted">Spouse:</div>
+              <div class="col-12 col-sm p-0 text-center text-sm-left">{{characterDetails.spouse.name}}</div></div>
+          </div>
+          <!-- end item-data -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end card -->
+
+  <div class="card-columns mt-5">
+
+    <div class="card" *ngIf="item.books[0]">
+      <div class="card-body">
+        <h5 class="card-title">Books</h5>
+        <p class="card-text">
+          <small>Books that {{item.name}}
+            <span *ngIf="!item.name">{{item.aliases[0]}}</span> has been in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let book of characterDetails.books; index as i" [attr.data-index]="i">
+          <li class="list-group-item li-hover" [routerLink]="['/detail','books',book.id]">
+            <div class="row align-items-center">
+              <div class="col">
+                <img class="img-fluid" src="../assets/images/books/{{book.name}}.jpg" style="height: 15vh">
+              </div>
+              <div class="col">
+                {{book.name}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.titles[0]">
+      <div class="card-body">
+        <h5 class="card-title">Titles</h5>
+        <p class="card-text">
+          <small>The titles that {{item.name}} holds.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let title of item.titles">
+          <li class="list-group-item">{{title}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.aliases[0]">
+      <div class="card-body">
+        <h5 class="card-title">Aliases</h5>
+        <ul class="list-group list-group-flush" *ngFor="let alias of item.aliases">
+          <li class="list-group-item">{{alias}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.tvSeries[0]">
+      <div class="card-body">
+        <h5 class="card-title">TV Series</h5>
+        <p class="card-text">
+          <small>The seasons of Game of Thrones that {{item.name}} has been in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let series of item.tvSeries">
+          <li class="list-group-item">{{series}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.allegiances[0]">
+      <div class="card-body">
+        <h5 class="card-title">Allegiances</h5>
+        <p class="card-text">
+          <small>Houses that {{item.name}}
+            <span *ngIf="!item.name">{{item.aliases[0]}}</span> is loyal to.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let house of characterDetails.allegiances; index as i" [attr.data-index]="i">
+          <li class="list-group-item li-hover text-center" [routerLink]="['/detail','houses',house.id]">
+            <img id="{{house.id}}" class="img-fluid mx-auto house-img" src="../assets/images/houses/{{house.name}}.jpg" style="width: 5vw"
+              (error)="hideImage(house.id)">
+            <br>{{house.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card text-center" *ngIf="item.playedBy[0]">
+      <div class="card-body">
+        <h5 class="card-title">Played by</h5>
+        <img class="img-fluid" src="../assets/images/actors/{{item.playedBy}}.jpg" style="height: 20vh">
+        <br> {{item.playedBy}}
+      </div>
+    </div>
+
+    <div class="card" *ngIf="item.povBooks[0]">
+      <div class="card-body">
+        <h5 class="card-title">POV Books</h5>
+        <p class="card-text">
+          <small>Books that {{item.name}} has had a POV-chapter in.</small>
+        </p>
+        <ul class="list-group list-group-flush" *ngFor="let book of characterDetails.povBooks">
+          <li class="list-group-item li-hover" [routerLink]="['/detail','books',book.id]">
+            <div class="row align-items-center">
+              <div class="col">
+                <img class="img-fluid" src="../assets/images/books/{{book.name}}.jpg" style="height: 15vh">
+              </div>
+              <div class="col">{{book.name}}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+<!-- end conatiner -->

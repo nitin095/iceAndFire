@@ -11,7 +11,9 @@ import { HttpService } from './http.service';
 import { HttpClientModule } from "@angular/common/http";
 import { SearchPipe } from './search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GetNamePipe } from './get-name.pipe';
+import { BookComponent } from './book/book.component';
+import { CharacterComponent } from './character/character.component';
+import { HouseComponent } from './house/house.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { GetNamePipe } from './get-name.pipe';
     DetailComponent,
     NotFoundComponent,
     SearchPipe,
-    GetNamePipe
+    BookComponent,
+    CharacterComponent,
+    HouseComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +32,10 @@ import { GetNamePipe } from './get-name.pipe';
     FormsModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
-      { path: 'home/:category', component: HomeComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'book/:id', component: BookComponent },
+      { path: 'character/:id', component: CharacterComponent},
+      { path: 'house/:id', component: HouseComponent},
       { path: 'detail/:category/:id', component: DetailComponent },
       { path: '**', component: NotFoundComponent }
     ])

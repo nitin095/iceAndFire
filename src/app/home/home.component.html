@@ -166,7 +166,7 @@
     <div class="col-6 col-sm-4 col-lg-3" *ngFor="let item of visibleItems | search: searchInput; index as i" [attr.data-index]="i">
 
       <!-- book card -->
-      <div *ngIf="item.isbn" class="card my-3" [routerLink]="['/detail','books',item.url.substring(item.url.lastIndexOf('/')+1)]">
+      <div *ngIf="item.isbn" class="card my-3" [routerLink]="['/book',item.url.substring(item.url.lastIndexOf('/')+1)]">
         <div class="card-img-container">
           <img class="card-img-top book-card-img" src="../assets/images/books/{{item.name}}.jpg" alt="{{item.name}}">
         </div>
@@ -184,7 +184,7 @@
       <!--end book card -->
 
       <!-- character card -->
-      <div *ngIf="item.url.includes('characters')" class="card my-3" [routerLink]="['/detail','characters',item.url.substring(item.url.lastIndexOf('/')+1)]">
+      <div *ngIf="item.url.includes('characters')" class="card my-3" [routerLink]="['/character',item.url.substring(item.url.lastIndexOf('/')+1)]">
         <div class="card-body">
           <div class="row align-items-center no-gutters" style="height: 12vh">
             <div id="{{item.url}}" class="col-4">
@@ -203,7 +203,7 @@
       <!--end character card -->
 
       <!-- house card -->
-      <div *ngIf="item.url.includes('house')" class="card my-3" [routerLink]="['/detail','houses',item.url.substring(item.url.lastIndexOf('/')+1)]">
+      <div *ngIf="item.url.includes('house')" class="card my-3" [routerLink]="['/house',item.url.substring(item.url.lastIndexOf('/')+1)]">
         <div class="card-body">
           <div class="row align-items-center" style="height: 18vh">
             <div id="house{{i}}" class="col-12">
