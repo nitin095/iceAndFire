@@ -111,15 +111,11 @@
     color: white;
     width: 90%
 }
-.checkbox-row{
-    background: rgba(247, 178, 99, 0.2);
-    padding: 0.3rem 1rem;
-}
-.checkbox-row small{
-    font-weight: bolder
-}
 .filter-row{
     background: rgba(0, 0, 0, 0.5)
+}
+.showing-row{
+    background: rgba(247, 178, 99, 0.2)
 }
 .showing-row span{
     cursor: pointer;
