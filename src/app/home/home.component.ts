@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public sortField: string;
   public selected: any = 'all';
   public filterFields: string = "";
+  public searchInput: string;
 
   constructor(public httpService: HttpService) {
     console.log("home component constructor called");
