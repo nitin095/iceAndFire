@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-  private url: string
+  public url: string
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
