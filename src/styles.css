@@ -177,7 +177,7 @@ h3{
 .card li{
   background: rgba(0,0,0,0.5)
 }
-#item-img img{
+.item-img{
   max-height: 62vh;
 }
 .house-img{

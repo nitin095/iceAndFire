@@ -104,7 +104,6 @@ export class HouseComponent implements OnInit {
         }
       )
     }// end for
-    console.log(this.houseDetails)
   }// end getHouseData
 
   // function to extract id from a resource url

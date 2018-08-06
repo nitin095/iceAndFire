@@ -15,7 +15,13 @@
 
 <div class="container">
   <div class="row my-5 justify-content-end align-items-center">
-    <h3 class="col-12 text-center">Characters, Houses and Books</h3>
+    <div class="col-12">
+      <div class="row justify-content-center no-gutters">
+        <div class="col-auto text-center"><h3 class="book-heading">Books</h3></div>
+        <div class="col-auto text-center"><h3 class="character-heading">Characters</h3></div>
+        <div class="col-auto text-center"><h3 class="house-heading">Houses</h3></div>
+      </div>
+    </div>
 
     <!-- category filter -->
     <div class="col-12">
@@ -166,11 +172,11 @@
     <div class="col-6 col-sm-4 col-lg-3" *ngFor="let item of visibleItems | search: searchInput; index as i" [attr.data-index]="i">
 
       <!-- book card -->
-      <div *ngIf="item.isbn" class="card my-3" [routerLink]="['/book',item.url.substring(item.url.lastIndexOf('/')+1)]">
+      <div *ngIf="item.isbn" class="card red-bg my-3" [routerLink]="['/book',item.url.substring(item.url.lastIndexOf('/')+1)]">
         <div class="card-img-container">
           <img class="card-img-top book-card-img" src="../assets/images/books/{{item.name}}.jpg" alt="{{item.name}}">
         </div>
-        <div class="card-body px-3 py-2">
+        <div class="card-body px-1 px-sm-3 py-sm-2">
           <h5 class="card-title my-1 reduced-line-height">{{item.name}}</h5>
           <p class="card-text reduced-line-height">
             <small>{{item.mediaType}}</small>
@@ -184,15 +190,15 @@
       <!--end book card -->
 
       <!-- character card -->
-      <div *ngIf="item.url.includes('characters')" class="card my-3" [routerLink]="['/character',item.url.substring(item.url.lastIndexOf('/')+1)]">
-        <div class="card-body">
-          <div class="row align-items-center no-gutters" style="height: 12vh">
-            <div id="{{item.url}}" class="col-4">
+      <div *ngIf="item.url.includes('characters')" class="card blue-bg my-3" [routerLink]="['/character',item.url.substring(item.url.lastIndexOf('/')+1)]">
+        <div class="card-body px-1 px-sm-2">
+          <div class="row align-items-center" style="min-height: 20vh">
+            <div id="{{item.url}}" class="col-12 col-md">
               <img class="img-fluid" src="../assets/images/characters/{{item.name}}.jpg" (error)="hideImage(item.url)" alt="Image" style="max-height: 15vh">
             </div>
             <div class="col">
-              <h5 class="card-title my-1">{{item.name}}</h5>
-              <p class="card-text">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text reduced-line-height">
                 <span *ngIf="item.name !== item.aliases[0]">{{item.aliases[0]}}
                   <br>
                 </span>
@@ -205,9 +211,9 @@
       <!--end character card -->
 
       <!-- house card -->
-      <div *ngIf="item.url.includes('house')" class="card my-3" [routerLink]="['/house',item.url.substring(item.url.lastIndexOf('/')+1)]">
-        <div class="card-body">
-          <div class="row align-items-center" style="height: 18vh">
+      <div *ngIf="item.url.includes('house')" class="card green-bg my-3" [routerLink]="['/house',item.url.substring(item.url.lastIndexOf('/')+1)]">
+        <div class="card-body px-1 px-sm-2">
+          <div class="row align-items-center" style="min-height: 20vh">
             <div id="house{{i}}" class="col-12">
               <img class="img-fluid" src="../assets/images/houses/{{item.name}}.jpg" (error)="hideImage('house'+i)" alt="Card image cap"
                 style="height: 8vh">
