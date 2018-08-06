@@ -1,10 +1,10 @@
 @font-face {
     font-family: Game of Thrones;
-    src: url(/assets/fonts/GameofThrones.ttf);
+    src: url(./assets/fonts/GameofThrones.ttf);
 }
 @font-face {
     font-family:Marcellus;
-    src: url(/assets/fonts/Marcellus-Regular.ttf);
+    src: url(./assets/fonts/Marcellus-Regular.ttf);
 }
 :root{
     font-size: 16px
@@ -118,7 +118,7 @@
 .item-name{
   font-size: 2rem;
   font-family: Game of Thrones;
-  background-image: url(/assets/images/text-bg-grey.jpg);
+  background-image: url(./assets/images/text-bg-grey.jpg);
   -webkit-background-clip: text;
   background-clip: text;
   background-size: cover;
@@ -160,7 +160,7 @@ h3{
   margin-top: 8rem
 }
 .card{
-  background-image: url(/assets/images/card-bg.jpg);
+  background-image: url(./assets/images/card-bg.jpg);
   background-size: cover;
   color: silver;
 }
@@ -257,7 +257,8 @@ h3{
 /*small devices*/
 @media screen and (min-width: 576px) and (max-width: 767px) {
   .card-columns {
-      column-count: 2;
+      column-count: 2!important;
+      background: red
     }
 }
 
