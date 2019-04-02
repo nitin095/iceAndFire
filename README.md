@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+[View website](https://nitin095.github.io/iceAndFire)
+
 ## Problem Statement
 Check out the following API documentation -
 https://anapioficeandfire.com/
